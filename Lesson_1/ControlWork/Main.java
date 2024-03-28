@@ -1,3 +1,6 @@
+import java.util.HashSet;
+import java.util.Set;
+
 public class Main {
     public static void main(String[] args) {
         Cat cat1 = new Cat();
@@ -28,7 +31,26 @@ public class Main {
         cat4. color = "Рыжий";
         cat4. sterilization = true;
 
-        System.out.println(cat1);
+        Cat cat5 = new Cat();
+        cat5. name = "Чижик";
+        cat5. age = 11;
+        cat5. owner = "Алина";
+        cat5. color = "Рыжий";
+        cat5. sterilization = true;
+
+        Set<Cat> cats = new HashSet<>();
+        cats.add(cat1);
+        cats.add(cat2);
+        cats.add(cat3);
+        cats.add(cat4);
+        cats.add(cat5);
+
+        printSet(cats);
     }
 
+    static void printSet(Set<Cat> cats){
+        for (Cat cat: cats){
+            System.out.println(cat);
+        }
+    }
 }
