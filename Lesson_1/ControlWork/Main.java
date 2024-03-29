@@ -4,7 +4,7 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) {
         Cat cat1 = new Cat();
-        cat1. name = "Муззик";
+        cat1. name = "Мурзик";
         cat1. age = 10;
         cat1. owner = "Олег";
         cat1. color = "Рыжий";
@@ -46,8 +46,23 @@ public class Main {
         cats.add(cat5);
 
         printSet(cats);
+
+        System.out.println();
+        printSet(findByColor("Белый", cats));
     }
 
+// Ищем котика по нужному цвету
+    static Set<Cat> findByColor(String color, Set<Cat> cats){
+        Set<Cat> res = new HashSet<>();
+        for (Cat cat:cats){
+            if (cat.color.equals(color)){
+
+            }
+        }
+        return res;
+    } 
+
+// Создаем множество в котором будем хранить экземпляры класса Set
     static void printSet(Set<Cat> cats){
         for (Cat cat: cats){
             System.out.println(cat);
