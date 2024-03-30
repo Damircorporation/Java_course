@@ -1,28 +1,25 @@
-import java.util.Objects;
 
-public class Laptop {
+class Laptop {
+    String brand;
     int ram;
-    int storageSize;
+    int hdd;
     String os;
     String color;
 
-// Выводим всю инфу что имеем
-    public String toString(){
-        return "ram :" + ram + ", storageSize :"+ storageSize + ", os :"+ os + ", color :"+ color; 
+    public Laptop(String brand, int ram, int hdd, String os, String color) {
+        this.brand = brand;
+        this.ram = ram;
+        this.hdd = hdd;
+        this.os = os;
+        this.color = color;
     }
 
-    public boolean equals(Object obj) {
-        if (this == obj){
-            return true;
-        }
-        if (obj instanceof Laptop laptop) {
-            return storageSize == laptop.storageSize && ram == laptop.ram && os.equals(laptop.os)&& color.equals(laptop.color);   
-        }
-        return false;
-    }
-    
-// сравниваем по ХэшКоду
-    public int hashCode(){ 
-        return storageSize+ram+11*os.hashCode()+17*color.hashCode();
+    public String toString() {
+        return "Laptop" +
+                "brand=" + brand +
+                ", ram=" + ram +
+                ", hdd=" + hdd +
+                ", os=" + os + 
+                ", color=" + color;
     }
 }

@@ -7,84 +7,77 @@
 // 1 - ОЗУ
 // 2 - Объем ЖД
 // 3 - Операционная система
-// 4 - Цвет …
+// 4 - Цвет
 // 5 - поиск
 // Далее нужно запросить минимальные значения для указанных критериев - сохранить параметры фильтрации можно
 // также в Map.
 // Отфильтровать ноутбуки из первоначального множества и вывести проходящие по условиям.
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
 import java.util.HashSet;
 import java.util.Scanner;
-import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Main {
     public static void main(String[] args) {
-        Laptop laptop1 = new Laptop();
-        laptop1. ram = 8;
-        laptop1. storageSize = 512;
-        laptop1. os = "Windows";
-        laptop1. color = "Silver";
-
-        Laptop laptop2 = new Laptop();
-        laptop2. ram = 16;
-        laptop2. storageSize = 1024;
-        laptop2. os = "MacOS";
-        laptop2. color = "Space Gray";
-
-        Laptop laptop3 = new Laptop();
-        laptop3. ram = 8; 
-        laptop3. storageSize = 256;
-        laptop3. os = "Windows";
-        laptop3. color = "Black";
-
-        Laptop laptop4 = new Laptop();
-        laptop4. ram = 16;
-        laptop4. storageSize = 1024;
-        laptop4. os = "Windows";
-        laptop4. color = "White";
-
-        Laptop laptop5 = new Laptop();
-        laptop5. ram = 8;
-        laptop5. storageSize = 256;
-        laptop5. os = "Linux";
-        laptop5. color = "Black";
-
         Set<Laptop> laptops = new HashSet<>();
-        laptops.add(laptop1);
-        laptops.add(laptop2);
-        laptops.add(laptop3);
-        laptops.add(laptop4);
-        laptops.add(laptop5);
+        laptops.add(new Laptop("Dell", 16, 512, "Windows", "Black"));
+        laptops.add(new Laptop("Apple", 8, 256, "MacOS", "Silver"));
+        laptops.add(new Laptop("Lenovo", 32, 1024, "Windows", "Gray"));
+        laptops.add(new Laptop("Samsung", 16, 1024, "MacOS", "Gray"));
+        laptops.add(new Laptop("Lenovo", 32, 512, "Linux", "Black"));
 
-        printSet(laptops);
+        Map<String, Object> filters = new HashMap<>();
 
-        System.out.println();
-        printSet(findByColor("White", laptops));
-    }
+        Scanner scanner = new Scanner(System.in);
 
-// Ищем котика по нужному цвету
-    static Set<Laptop> findByColor(String color, Set<Laptop> laptops){
-        Set<Laptop> res = new HashSet<>();
-        for (Laptop laptop:laptops){
-            if (laptop.color.equals(color)){
-                res.add(laptop);
+        System.out.println("Введите цифру, соответствующую необходимому критерию:");
+        System.out.println("1 - ОЗУ");
+        System.out.println("2 - Объем ЖД");
+        System.out.println("3 - Операционная система");
+        System.out.println("4 - Цвет");
+        System.out.println("5 - Поиск");
+
+        int choice;
+        while (true) {
+            choice = scanner.nextInt();
+            if (choice == 5) {
+                break;
+            }
+            switch (choice) {
+                case 1:
+                    System.out.println("Введите минимальный объем ОЗУ");
+                    filters.put("ram", scanner.nextInt());
+                    break;
+                case 2:
+                    System.out.println("Введите минимальный объем ЖД");
+                    filters.put("hdd", scanner.nextInt());
+                    break;
+                case 3:
+                    System.out.println("Введите необходимую операционную систему");
+                    filters.put("os", scanner.next());
+                    break;
+                case 4:
+                    System.out.println("Введите необходимый цвет");
+                    filters.put("color", scanner.next());
+                    break;
+                default:
+                    System.out.println("Неверный ввод критерия. Попробуйте снова.");
             }
         }
-        return res;
-    } 
 
-// Создаем множество в котором будем хранить экземпляры класса Set
-    static void printSet(Set<Laptop> laptops){
-        for (Laptop laptop: laptops){
+        Set<Laptop> filteredLaptops = laptops.stream()
+                .filter(laptop -> filters.getOrDefault("ram", 0) instanceof Integer && laptop.ram >= (int) filters.getOrDefault("ram", 0))
+                .filter(laptop -> filters.getOrDefault("hdd", 0) instanceof Integer && laptop.hdd >= (int) filters.getOrDefault("hdd", 0))
+                .filter(laptop -> filters.getOrDefault("os", "").equals("") || laptop.os.equalsIgnoreCase((String) filters.getOrDefault("os", "")))
+                .filter(laptop -> filters.getOrDefault("color", "").equals("") || laptop.color.equalsIgnoreCase((String) filters.getOrDefault("color", "")))
+                .collect(Collectors.toSet());
+
+        System.out.println("Вам подходит ноутбук:");
+        for (Laptop laptop : filteredLaptops) {
             System.out.println(laptop);
         }
     }
-
-    // Scanner scanner = new Scanner(System.in);
-    // System.out.println("Ввод вопроса");
-    // String answer = scanner.nextLine();
-    // while (!answer.equals("5")){
-
-    // }
-
 }
