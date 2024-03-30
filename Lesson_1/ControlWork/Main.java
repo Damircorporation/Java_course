@@ -59,7 +59,7 @@ public class Main {
         printSet(laptops);
 
         System.out.println();
-        printSet(findByColor("Белый", laptops));
+        printSet(findByColor("White", laptops));
     }
 
 // Ищем котика по нужному цвету
@@ -67,7 +67,7 @@ public class Main {
         Set<Laptop> res = new HashSet<>();
         for (Laptop laptop:laptops){
             if (laptop.color.equals(color)){
-
+                res.add(laptop);
             }
         }
         return res;
