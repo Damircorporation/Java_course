@@ -15,11 +15,14 @@ class Laptop {
     }
 
     public String toString() {
-        return "Laptop" +
-                "brand=" + brand +
+        return "Laptop{" +
+                "brand='" + brand + '\'' +
                 ", ram=" + ram +
                 ", hdd=" + hdd +
-                ", os=" + os + 
-                ", color=" + color;
+                ", os='" + os + '\'' +
+                ", color='" + color + '\'' +
+                '}';
+
+                
     }
 }
