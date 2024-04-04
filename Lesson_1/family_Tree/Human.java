@@ -32,7 +32,8 @@ public class Human {
         this(name, gender, birthDate, null, null, null);
      }
 
-     public Human(String name, Gender gender, LocalDate birthDate, Human father, Human mother) {
+     public Human(String name, Gender gender, LocalDate birthDate, 
+                Human father, Human mother) {
         this(name, gender, birthDate, null, father, mother);
      }
 
@@ -95,7 +96,7 @@ public class Human {
 
     public String getName() {return name; }
 
-    public long getID() {return id; }
+    public long getId() {return id; }
 
     public void setId(long id) {return.id = id; }
 
@@ -110,6 +111,7 @@ public class Human {
     public void setDeathDate(LocalDate deathDate) {this.deadhDate = deathDate; }
 
     public Gender getGender() {return gender; }
+
 
     public String getInfo(){
         StringBuilder sb = new StringBuilder();
@@ -129,7 +131,7 @@ public class Human {
         sb.append(getFatehr());
         sb.append(", ");
         sb.append(getChildrenInfo());
-        
+        //TODO добавить информацию о том жив ли человек
         return sb.toString();
     }
 
@@ -180,6 +182,14 @@ public class Human {
         return res.toString();
         }
 
-    
-    
+
+        public boolean equals(Object obj) {
+            if (this == obj) {
+                return true;
+            }
+            if (obj instanceof Human human) {
+                return human.getId() == getId()
+            }
+            return false;
+        }
 }
