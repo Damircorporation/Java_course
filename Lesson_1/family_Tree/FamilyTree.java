@@ -75,7 +75,77 @@ public class FamilyTree {
 
     // TODO написать метод создания родственных связей
 
-    
+   public boolean setWedding(long humanId1, long humanId2) {
+        if (checkId(humanId1) && checkId(humanId2)) {
+            Human human1 = getById(humanId1);
+            Human human2 = getById(humanId2);
+            return setWedding(human1, human2)
+        }
+        return false;
+    } 
 
+    public boolean setWedding(Human human1, Human human2) {
+        if (human1.getSpouse()== null && human2.getSpouse()==null) {
+            human1.getSpouse(human2);
+            human2.getSpouse(human1);
+            return true;
+        } else {
+            return false;
+        }
+    }
 
+    public boolean setDivorce(long humanId1, long humanId2) {
+        if (checkId(humanId1) && checkId(humanId2)) {
+            Human human1 = getById(humanId1);
+            Human human2 = getById(humanId2);
+            return setDivorce(human1, human2)
+        }
+        return false;
+    } 
+
+    public boolean setDivorce(Human human1, Human human2) {
+        if (human1.getSpouse()== null && human2.getSpouse()==null) {
+            human1.getSpouse(human2);
+            human2.getSpouse(human1);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean remove(long humansId) {
+        if (checkId(humansId)) {
+            Human human = getById(humansId);
+            return humanList.remove(human);
+        }
+        return false;
+    }
+
+    private boolean checkId(long id) {
+        return id < countPeople && id >= 0;
+    }
+
+    public Human getById(long id) {
+        if (checkId(id)){
+            for (Human human: humanList) {
+                if (human.getId() == id) {
+                    return human;
+                }
+            }
+        }
+        return null;
+    }
+
+    public String getInfo() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("В дереве");
+        sb.append(humanList.size());
+        sb.append("объектов \n");
+        for (Human human: humanList) {
+            sb.append(human);
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }
+ 
