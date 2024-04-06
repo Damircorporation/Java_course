@@ -1,5 +1,3 @@
-package family_tree.family_tree;
-
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -98,7 +96,7 @@ public class Human {
 
     public long getId() {return id; }
 
-    public long setId(long id) {return id = id; }
+    public void setId(long id) {this.id = id; }
 
     public LocalDate getBirthDate() {return birthDate; }
 

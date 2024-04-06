@@ -1,8 +1,6 @@
-package family_tree;
 
 import java.util.ArrayList;
 import java.util.List;
-import family_tree.family_tree.Human;
 
 
 public class FamilyTree {
@@ -45,12 +43,12 @@ public class FamilyTree {
         }
     }
 
-    public List<Human> getSiblings(intid) {
+    public List<Human> getSiblings(int id) {
         Human human = getById(id);
         if (human == null) {
             return null;
         }
-        List<Human> res = new ArrayList();
+        List<Human> res = new ArrayList<>();
         for (Human parent: human.getParents()) {
             for (Human child: parent.getChildren()){
                 if (!child.equals(human)) {
@@ -62,7 +60,7 @@ public class FamilyTree {
     }
 
     public List<Human> getByName(String name) {
-        List<Human> res = new ArrayList();
+        List<Human> res = new ArrayList<>();
         for (Human human: humanList) {
             if (human.getName().equals(name)) {
                 res.add(human);
@@ -77,15 +75,15 @@ public class FamilyTree {
         if (checkId(humanId1) && checkId(humanId2)) {
             Human human1 = getById(humanId1);
             Human human2 = getById(humanId2);
-            return setWedding(human1, human2)
+            return setWedding(human1, human2);
         }
         return false;
     } 
 
     public boolean setWedding(Human human1, Human human2) {
         if (human1.getSpouse()== null && human2.getSpouse()==null) {
-            human1.getSpouse(human2);
-            human2.getSpouse(human1);
+            human1.setSpouse(human2);
+            human2.setSpouse(human1);
             return true;
         } else {
             return false;
@@ -96,15 +94,15 @@ public class FamilyTree {
         if (checkId(humanId1) && checkId(humanId2)) {
             Human human1 = getById(humanId1);
             Human human2 = getById(humanId2);
-            return setDivorce(human1, human2)
+            return setDivorce(human1, human2);
         }
         return false;
     } 
 
     public boolean setDivorce(Human human1, Human human2) {
-        if (human1.getSpouse()== null && human2.getSpouse()==null) {
-            human1.getSpouse(human2);
-            human2.getSpouse(human1);
+        if (human1.getSpouse() == null && human2.getSpouse()==null) {
+            human1.setSpouse(human2);
+            human2.setSpouse(human1);
             return true;
         } else {
             return false;

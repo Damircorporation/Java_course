@@ -1,15 +1,14 @@
-package family_Tree;
+
 import java.time.LocalDate;
-import family_tree.FamilyTree;
 
 public class Main {
     public static void main(String[] args) {
-        FamilyTree = testTree();
+        FamilyTree tree = testTree();
         System.out.println(tree);
 
     }
 
-    static FamilyTree tesTree() {
+    static FamilyTree testTree() {
         FamilyTree tree = new FamilyTree();
 
         Human vasya = new Human("Василий", Gender.Male, LocalDate.of(1963, 12, 10));
@@ -18,9 +17,9 @@ public class Main {
         tree.add(vasya);
         tree.setWedding(vasya, masha);
 
-        Human chrictina = new Human("Кристина", Gender.Female, LocalDate.of(1988, 7, 5)
+        Human chrictina = new Human("Кристина", Gender.Female, LocalDate.of(1988, 7, 5),
                 vasya, masha);
-        Human semyon = new Human("Семен", Gender.Male, LocalDate.of(1991, 1, 25)
+        Human semyon = new Human("Семен", Gender.Male, LocalDate.of(1991, 1, 25),
                 vasya, masha);
         tree.add(semyon);
         tree.add(chrictina);
