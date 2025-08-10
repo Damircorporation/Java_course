@@ -15,16 +15,16 @@ class WeatherReporterTest {
 
         // Определяем поведение мока. Когда метод getCurrentTemperature() будет вызван,
         // он вернет 25
-        //when(mockWeatherService.getCurrentTemperature())...
+        when(mockWeatherService.getCurrentTemperature().thenReturn(30);
 
         // Создаем объект класса WeatherReporter, передаем ему в конструктор наш мок
-
+        WeatherReporter weatherReporter = new WeatherReporter(mockWeatherService);
 
         // Вызываем метод generateReport()
-
+        String report = weatherReporter.generateReport();
 
         // Проверяем, что отчет содержит ожидаемую информацию о температуре
-
+        assertEquals("Текущая температура: 30 градусов", report);
     }
 
 
